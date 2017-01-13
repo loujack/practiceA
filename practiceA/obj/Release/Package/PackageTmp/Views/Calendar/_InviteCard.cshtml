@@ -1,0 +1,172 @@
+﻿@{
+    ViewBag.Title = "InviteCard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Styles.Render("~/Content/jquery.datetimepicker.css")
+@Styles.Render("~/Content/colorpicker.css")
+@Styles.Render("~/Content/layout.css")
+@Styles.Render("~/Content/jack.css")
+@Scripts.Render("~/Scripts/jquery.js")
+@Scripts.Render("~/Scripts/jquery.datetimepicker.full.js")
+@Scripts.Render("~/Scripts/jquery.validate.min.js")
+@Scripts.Render("~/Scripts/jquery.validate.unobtrusive.min.js")
+@Scripts.Render("~/Scripts/colorpicker.js")
+@Scripts.Render("~/Scripts/eye.js")
+@Scripts.Render("~/Scripts/utils.js")
+@Scripts.Render("~/Scripts/layout.js?ver=1.0.")
+
+<form class="formIndex" id="createInvitationCard">
+    <h1>邀請函</h1>
+    <h1 id="partyName">活動名稱</h1>
+    <table>
+        <tbody>
+            <tr>
+                <td>@Html.Label("店家名稱")：@ViewBag.shopName</td>
+                <td><p id="shopName"></p></td>
+            </tr>
+            <tr>
+                <td>@Html.Label("電話")：@ViewBag.phone</td><td><p id="phone"></p></td>
+            </tr>
+
+            <tr><td>@Html.Label("地址")：@ViewBag.address</td><td><p id="address"></p></td></tr>
+
+            <tr><td>@Html.Label("備註")：@ViewBag.note</td><td><p id="note"></p></td></tr>
+
+            <tr><td colspan="2">是否參加：</td></tr>
+            <tr>
+                <td><input type="radio" id="invited_true" value="true" checked> 是</td>
+                <td><input type="radio" id="invited_false" value="false"> 否</td>
+            </tr>
+            <tr name="chooseHiden"><td colspan="2">@Html.Label("時間")：<p id="time"></p></td></tr>
+                                @* name="chooseHiden"
+    @foreach (var temp in ViewBag.partyTime)
+    {
+        <dd><input type="checkbox" value="@temp">@temp<br></dd>
+    }
+    <tr style="display:none;"><input name="datetimepicker" type="text" /></tr>
+    <tr style="display:none;"><p style="width:15px" id="addDate">[+]</p></tr>
+                                *@
+            <tr name="chooseHiden">
+                <td>@Html.Label("暱稱")：</td>
+                <td> @Html.TextBox("nickName", "", new { @id = "color", style = "background-color:#c1c1eb;" })</td>
+            </tr>
+            <tr name="chooseHiden">
+                <td>@Html.Label("底色")：</td>
+                <td><div id="colorSelector"><div style="background-color: #c1c1eb"></div></div></td>
+            </tr>
+    </tbody>
+    </table>
+
+    <input id="sendResult" type="submit" value="送出" />
+</form>
+<script type="text/javascript">
+    (function (window) {
+        var document = window.document,
+        $ = window.jQuery
+        $('#color')[0].value = ""
+        $("[name=datetimepicker]").datetimepicker({
+            dayOfWeekStart: 7,
+            startDate: '2016/12/21'
+        })
+        $('#sendResult').click(function (e) {
+            e.preventDefault()
+        })
+        /*
+        $('#addDate').click(function () {
+            $("<dd><input name='datetimepicker' type='text' /></dd>").insertBefore(this)
+            $("[name=datetimepicker]").datetimepicker({
+                dayOfWeekStart: 7,
+                startDate: '2016/12/21'
+            })
+        })
+        */
+        //取值 $('.valid')[0].value $('.valid')[1].value
+        $('#colorSelector').ColorPicker({
+            color: '#c1c1eb',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500)
+                return false
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500)
+                return false
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#colorSelector div').css('backgroundColor', '#' + hex)
+                $('#color').css('background-color', '#' + hex)
+            }
+        })
+        $('#invited_true').click(function () {
+            if (this.checked == true) {
+                $('#invited_true')[0].checked = true;
+                $('#invited_false')[0].checked = false;
+                $("[name=chooseHiden]")[0].style = "";
+                $("[name=chooseHiden]")[1].style = "";
+                $("[name=chooseHiden]")[2].style = "";
+            }
+        })
+        $('#invited_false').click(function () {
+            if (this.checked == true) {
+                $('#invited_true')[0].checked = false;
+                $('#invited_false')[0].checked = true;
+                $("[name=chooseHiden]")[0].style = "display:none;";
+                $("[name=chooseHiden]")[1].style = "display:none;";
+                $("[name=chooseHiden]")[2].style = "display:none;";
+            }
+        })
+        let url = window.location.href.substring(window.location.href.indexOf("?") + 1), end = 0, all = "", title = ""
+        do {
+            end = url.indexOf("&")
+            if (end === -1) {
+                all = url
+            }
+            else {
+                all = url.substring(0, end)
+            }
+            title = all.substring(0, all.indexOf("="))
+            switch (title) {
+                case "nickName":
+                    //alert(temp)
+                    break;
+                case "color":
+                    //alert(temp)
+                    break;
+                case "partyName":
+                    $('#partyName')[0].innerHTML = decodeURI(all.substring(all.indexOf("=") + 1))
+                    break;
+                case "shopName":
+                    $('#shopName')[0].innerHTML = decodeURI(all.substring(all.indexOf("=") + 1))
+                    break;
+                case "phone":
+                    $('#phone')[0].innerHTML = decodeURI(all.substring(all.indexOf("=") + 1))
+                    break;
+                case "address":
+                    $('#address')[0].innerHTML = decodeURI(all.substring(all.indexOf("=") + 1))
+                    break;
+                case "note":
+                    $('#note')[0].innerHTML = decodeURI(all.substring(all.indexOf("=") + 1))
+                    break;
+                case "time":
+                    //alert(temp)
+                    break;
+                default:
+                    alert("Nothing match")
+            }
+            url = url.substring(end+1)
+            if (end === -1) {
+                let temp = url.replace("%20", " ").replace("partyTime=", ""), endCtr = 0
+                do {
+                    endCtr = temp.indexOf(",")
+                    if (endCtr === -1) {
+                        $("<tr><td colspan='2'><input name='datetimepicker' type='checkbox' value='" + temp + "'/><a>" + temp + "</a></td></tr>").insertAfter($('#partyTime'))
+                    }
+                    else {
+                        $("<tr><td colspan='2'><input name='datetimepicker' type='checkbox' value='" + temp + "'/><a>" + temp.substring(0, endCtr) + "</a></td></tr>").insertAfter($('#partyTime'))
+                        temp = temp.substring(endCtr + 1).replace("%20", " ")
+                    }
+                } while(endCtr !== -1)
+            }
+        } while (end !== -1)
+    })(window)
+</script>

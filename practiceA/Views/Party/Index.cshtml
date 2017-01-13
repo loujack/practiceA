@@ -1,0 +1,96 @@
+﻿@model IEnumerable<practiceA.Models.Party>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render("~/Scripts/jquery.js")
+
+<h2>此為測試頁面</h2>
+
+<p>
+    @Html.ActionLink("新增活動", "Create")
+</p>
+
+<label>分享連結：</label><label id="url" class="form-url"></label>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.shopName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.note)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nickName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.color)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.partyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.participants)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.shopName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.note)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nickName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.color)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.partyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.participants)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.no }) |
+            @Html.ActionLink("Details", "Details", new { id=item.no }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.no }) |
+            @Html.Label("建立分享連結", new { id = "buildUrl", value = item.no })
+        </td>
+    </tr>
+}
+
+</table>
+
+<script type="text/javascript">
+    (function (window) {
+        let document = window.document, $ = window.jQuery
+        $("[id=buildUrl]").click(function () {
+            $('#url')[0].innerText = window.location.href +"/InviteCard?no="+ this.getAttribute("value")
+        })
+    })(window)
+</script>

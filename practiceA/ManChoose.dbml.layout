@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="ManChoose">
+  <DataContextMoniker Name="/ManChooseDataContext" />
+  <nestedChildShapes>
+    <classShape Id="5b0770f8-3da1-42a2-9505-64acdf0f69a9" absoluteBounds="3, 0.5, 2, 1.537305094401042">
+      <DataClassMoniker Name="/ManChooseDataContext/ManChoose" />
+      <nestedChildShapes>
+        <elementListCompartment Id="df97435a-6ebd-4f26-89c1-c0e901e7f1fb" absoluteBounds="3.015, 0.96, 1.9700000000000002, 0.97730509440104174" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4b6487e8-42ea-44fd-aa89-217582e09278" absoluteBounds="3, 2.25, 2, 1.1677168782552083">
+      <DataClassMoniker Name="/ManChooseDataContext/ManColor" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cb2db3cd-2e06-44b9-ba4d-4fec7ce27e7e" absoluteBounds="3.0149999999999997, 2.71, 1.9700000000000002, 0.60771687825520826" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4b13b857-30cd-442b-957b-1a692f19feae" absoluteBounds="0.75, 0.5, 2, 2.6460697428385416">
+      <DataClassMoniker Name="/ManChooseDataContext/Parties" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a783f443-81b7-4ac4-bef6-7a2f2d7c8092" absoluteBounds="0.76500000000000057, 0.96, 1.9700000000000002, 2.0860697428385415" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

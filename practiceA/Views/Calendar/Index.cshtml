@@ -1,0 +1,102 @@
+﻿@model practiceA.Models.Party
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/jquery.datetimepicker.css")
+@Styles.Render("~/Content/colorpicker.css")
+@Styles.Render("~/Content/layout.css")
+@Styles.Render("~/Content/jack.css")
+@Scripts.Render("~/Scripts/jquery.js")
+@Scripts.Render("~/Scripts/jquery.datetimepicker.full.js")
+@Scripts.Render("~/Scripts/jquery.validate.min.js")
+@Scripts.Render("~/Scripts/jquery.validate.unobtrusive.min.js")
+@Scripts.Render("~/Scripts/colorpicker.js")
+@Scripts.Render("~/Scripts/eye.js")
+@Scripts.Render("~/Scripts/utils.js")
+@Scripts.Render("~/Scripts/layout.js?ver=1.0.")
+@using (@Html.BeginRouteForm("Invite", new { controller = "Calendar", action = "_InviteCard",
+    nickname = "", color = "" }, FormMethod.Post, new { @class = "formIndex", @id = "createParty" }))
+{
+    @Html.AntiForgeryToken()
+    <table>
+        <tbody>
+            <p>活動資訊</p>
+            <tr><td>@Html.LabelFor(model => model.partyName)： </td><td>@Html.EditorFor(model => model.partyName) </td></tr>
+            <dd>@Html.ValidationMessageFor(model => model.partyName, null, new { @class = "errorFont" })</dd>
+
+            <dt>@Html.LabelFor(model => model.shopName)：@Html.EditorFor(model => model.shopName)</dt>
+            <dd>@Html.ValidationMessageFor(model => model.shopName, null, new { @class = "errorFont" })</dd>
+
+            <dt>@Html.LabelFor(model => model.phone)：@Html.EditorFor(model => model.phone)</dt>
+            <dd>@Html.ValidationMessageFor(model => model.phone, null, new { @class = "errorFont" })</dd>
+
+            <dt>@Html.LabelFor(model => model.address)：@Html.EditorFor(model => model.address)</dt>
+            <dd>@Html.ValidationMessageFor(model => model.address, null, new { @class = "errorFont" })</dd>
+
+            <dt>@Html.LabelFor(model => model.note)：@Html.EditorFor(model => model.note)</dt>
+            <dd>@Html.ValidationMessageFor(model => model.note, null, new { @class = "errorFont" })</dd>
+
+            <dt>@Html.LabelFor(model => model.time)：</dt>
+            <dd><input id="partyTime" name="partyTime" type="text" style="display:none;"/></dd>
+            <dd><input name="datetimepicker" type="text" value="@ViewBag.Date" /></dd>
+            <dd><p style="width:15px" id="addDate">[+]</p></dd>
+
+            <dt>@Html.LabelFor(model => model.nickName)：
+                @Html.TextBoxFor(model => model.nickName, new { @id = "color", style = "background-color:#c1c1eb;" })</dt>
+            <dd>@Html.ValidationMessageFor(model => model.nickName, null, new { @class = "errorFont" })</dd>
+
+            <dt>@Html.LabelFor(model => model.color)：</dt>
+            <dd><div id="colorSelector"><div style="background-color: #c1c1eb"></div></div></dd>
+            <dd>@Html.ValidationMessageFor(model => model.color, null, new { @class = "errorFont" })</dd>
+        </tbody>
+    </table>
+
+    <input id="send" type="submit" value="產生邀請頁" />
+}
+<script type="text/javascript">
+    (function (window) {
+        var document = window.document, $ = window.jQuery, d = new Date()
+        $("[name=datetimepicker]").datetimepicker({
+            dayOfWeekStart: 7,
+            startDate: d.getFullYear() + '/' + d.getMonth() + 1 + '/' + d.getDate()
+        })
+        $('#addDate').click(function () {
+            $("<dd><input name='datetimepicker' type='text' /></dd>").insertBefore(this)
+            $("[name=datetimepicker]").datetimepicker({
+                dayOfWeekStart: 7,
+                startDate: d.getFullYear() + '/' + d.getMonth() + 1 + '/' + d.getDate()
+            })
+        })
+        $('#send').click(function (e) {
+            //e.preventDefault()
+            let timeArray = Array()
+            const datepicker = $("[name=datetimepicker]")
+            for (let temp in datepicker)
+            {
+                if (!isNaN(parseInt(temp)))
+                    timeArray[temp] = $("[name=datetimepicker]")[temp].value
+            }
+            $('#partyTime')[0].value = timeArray
+            $('#createParty')[0].action = "/Calendar/_InviteCard?nickname=" + $('#color')[0].value + "&color=" + $('#color')[0].style.backgroundColor
+             + "&partyName=" + $('#partyName')[0].value + "&shopName=" + $('#shopName')[0].value + "&phone=" + $('#phone')[0].value
+             + "&address=" + $('#address')[0].value + "&note=" + $('#note')[0].value + "&partyTime=" + $('#partyTime')[0].value
+        })
+        //取值 $('.valid')[0].value $('.valid')[1].value
+        $('#colorSelector').ColorPicker({
+            color: '#c1c1eb',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500)
+                return false
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500)
+                return false
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#colorSelector div').css('backgroundColor', '#' + hex)
+                $('#color').css('background-color', '#' + hex)
+            }
+        })
+    })(window)
+</script>

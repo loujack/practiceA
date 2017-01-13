@@ -1,0 +1,36 @@
+﻿.errorFont {
+    color: red;
+    width: 1200px;
+}
+.abgne_tab {
+    background: rgb(240, 240, 240);
+    overflow: hidden;
+    width: 1200px;
+    height: 100%;
+    table-layout: fixed;
+    left: 0px;
+    clear: left;
+    margin: 10px 0;
+    padding-top: 4%;
+    padding-left: 4%;
+    text-align: center;
+}
+.scroll_element {
+    overflow-x: auto;
+    white-space: nowrap;
+    text-align: left;
+}
+.formIndex {
+    margin-top: 5px;
+    margin-left: 0px;
+    text-align: left;
+    padding-top: 50px;
+}
+.form-url {
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #555555;
+    vertical-align: middle;
+    background-color: #ffffff;
+}

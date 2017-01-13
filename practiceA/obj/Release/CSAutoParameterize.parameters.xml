@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="PartyDBContext-Web.config Connection String" description="PartyDBContext 應用程式在 web.config 中用來存取資料庫的連接字串。" defaultValue="Data Source=DESKTOP-ET5HJR6\SQLEXPRESS;Database=測試區;Integrated Security=True;User ID=Test;pwd=zaq1xsw2$secret" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Projects\\practiceA\\practiceA\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='PartyDBContext']/@connectionString" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection 應用程式在 web.config 中用來存取資料庫的連接字串。" defaultValue="DefaultConnection_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Projects\\practiceA\\practiceA\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="practiceA.Models.ManChooseDBContext-Web.config Connection String" description="practiceA.Models.ManChooseDBContext 應用程式在 web.config 中用來存取資料庫的連接字串。" defaultValue="practiceA.Models.ManChooseDBContext_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Projects\\practiceA\\practiceA\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='practiceA.Models.ManChooseDBContext']/@connectionString" />
+  </parameter>
+  <parameter name="practiceA.Models.ManColorDBContext-Web.config Connection String" description="practiceA.Models.ManColorDBContext 應用程式在 web.config 中用來存取資料庫的連接字串。" defaultValue="practiceA.Models.ManColorDBContext_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Projects\\practiceA\\practiceA\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='practiceA.Models.ManColorDBContext']/@connectionString" />
+  </parameter>
+  <parameter name="PartyDBContext_DatabasePublish-Web.config Connection String" description="PartyDBContext_DatabasePublish 應用程式在 web.config 中用來存取資料庫的連接字串。" defaultValue="PartyDBContext_DatabasePublish.ConnetionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Projects\\practiceA\\practiceA\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='PartyDBContext_DatabasePublish']/@connectionString" />
+  </parameter>
+</parameters>

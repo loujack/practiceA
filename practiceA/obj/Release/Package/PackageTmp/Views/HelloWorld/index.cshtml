@@ -1,0 +1,26 @@
+﻿@model practiceA.Models.BasicInf
+
+@{
+    ViewBag.Title = "Index";
+}
+@Styles.Render("~/Content/jack.css")
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Html.BeginForm("index", "HelloWorld"))
+{
+<fieldset>
+    <legend>登入</legend>
+    <dl>
+        <dt>@Html.LabelFor(model => model.id)：</dt>
+        <dd>@Html.EditorFor(model => model.id)</dd>
+        <dd>@Html.ValidationMessageFor(model => model.id, null, new { @class = "errorFont" })</dd>
+
+        <dt>@Html.LabelFor(model => model.psd)：</dt>
+        <dd>@Html.EditorFor(model => model.psd)</dd>
+        <dd>@Html.ValidationMessageFor(model => model.psd, null, new { @class = "errorFont" })</dd>
+    </dl>
+</fieldset>
+<input type="submit" value="送出" />
+}

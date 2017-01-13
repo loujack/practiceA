@@ -1,0 +1,156 @@
+﻿@model practiceA.Models.Party
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/jquery.datetimepicker.css")
+@Styles.Render("~/Content/colorpicker.css")
+@Styles.Render("~/Content/layout.css")
+@Styles.Render("~/Content/jack.css")
+@Scripts.Render("~/Scripts/jquery.js")
+@Scripts.Render("~/Scripts/jquery.datetimepicker.full.js")
+@Scripts.Render("~/Scripts/jquery.validate.min.js")
+@Scripts.Render("~/Scripts/jquery.validate.unobtrusive.min.js")
+@Scripts.Render("~/Scripts/colorpicker.js")
+@Scripts.Render("~/Scripts/eye.js")
+@Scripts.Render("~/Scripts/utils.js")
+@Scripts.Render("~/Scripts/layout.js?ver=1.0.")
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Party</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.partyName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.partyName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.partyName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.shopName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.shopName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.shopName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.time, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input name="datetimepicker" type="text" value="@ViewBag.Date" class="form-control"/>
+                <p style="width:15px" id="addDate">[+]</p>
+                @Html.EditorFor(model => model.time, new { htmlAttributes = new { @class = "form-control", @Value = @ViewBag.Date, style = "display:none;" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.nickName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nickName, new { htmlAttributes = new { @class = "form-control", style = "background-color:#c1c1eb;" } })
+                @Html.ValidationMessageFor(model => model.nickName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.color, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div id="colorSelector"><div style="background-color: #c1c1eb"></div></div>
+                @Html.EditorFor(model => model.color, new { htmlAttributes = new { @class = "form-control", @Value = "#c1c1eb", style="display:none;" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.participants, htmlAttributes: new { @class = "control-label col-md-2", style = "display:none;" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.participants, new { htmlAttributes = new { @class = "form-control", style = "display:none;" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.phone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.note, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.note, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.note, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="send" type="submit" value="建立活動" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script type="text/javascript">
+    (function (window) {
+        let document = window.document, $ = window.jQuery, d = new Date()
+        $("[name=datetimepicker]").datetimepicker({
+            dayOfWeekStart: 7,
+            startDate: d.getFullYear() + '/' + d.getMonth() + 1 + '/' + d.getDate()
+        })
+        $('#addDate').click(function () {
+            $("<input name='datetimepicker' type='text' class='form-control'>").insertBefore(this)
+            $("[name=datetimepicker]").datetimepicker({
+                dayOfWeekStart: 7,
+                startDate: d.getFullYear() + '/' + d.getMonth() + 1 + '/' + d.getDate()
+            })
+        })
+        $('#send').click(function () {
+            let timeArray = Array()
+            const datepicker = $("[name=datetimepicker]")
+            for (let temp in datepicker)
+            {
+                if (!isNaN(parseInt(temp)))
+                    timeArray[temp] = $("[name=datetimepicker]")[temp].value
+            }
+            $('#time')[0].value = timeArray
+            $('#participants')[0].value = $('#nickName')[0].value
+        })
+        $('#colorSelector').ColorPicker({
+            color: '#c1c1eb',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500)
+                return false
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500)
+                return false
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#colorSelector div').css('backgroundColor', '#' + hex)
+                $('#nickName').css('background-color', '#' + hex)
+                $("[name=color]")[0].value = '#' + hex
+            }
+        })
+    })(window)
+</script>

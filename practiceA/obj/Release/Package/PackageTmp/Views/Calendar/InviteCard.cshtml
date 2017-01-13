@@ -1,0 +1,104 @@
+﻿@model practiceA.Models.Party
+@{
+    ViewBag.Title = "InviteCard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Styles.Render("~/Content/jquery.datetimepicker.css")
+@Styles.Render("~/Content/colorpicker.css")
+@Styles.Render("~/Content/layout.css")
+@Styles.Render("~/Content/jack.css")
+@Scripts.Render("~/Scripts/jquery.js")
+@Scripts.Render("~/Scripts/jquery.datetimepicker.full.js")
+@Scripts.Render("~/Scripts/jquery.validate.min.js")
+@Scripts.Render("~/Scripts/jquery.validate.unobtrusive.min.js")
+@Scripts.Render("~/Scripts/colorpicker.js")
+@Scripts.Render("~/Scripts/eye.js")
+@Scripts.Render("~/Scripts/utils.js")
+@Scripts.Render("~/Scripts/layout.js?ver=1.0.")
+
+<form class="formIndex" id="createInvitationCard">
+    <fieldset>
+        <legend>邀請函</legend>
+        <dl>
+            <dt>@ViewBag.partyName</dt>
+
+            <dt>@Html.LabelFor(model => model.shopName)：@ViewBag.position
+                @Html.LabelFor(model => model.phone)：@ViewBag.phone</dt>
+
+            <dt>@Html.LabelFor(model => model.address)：@ViewBag.adress</dt>
+
+            <dt>@Html.LabelFor(model => model.note)：@ViewBag.remark</dt>
+
+            <dt>
+                是否參加：
+                <input type="radio" id="invited_true" value="true" checked> 是
+                <input type="radio" id="invited_false" value="false"> 否<br>
+            </dt>
+            <div id="chooseHiden">
+                <dt>@Html.LabelFor(model => model.time)：</dt>
+                @foreach (var temp in ViewBag.partyTime)
+                {
+                    <dd><input type="checkbox" value="@temp">@temp<br></dd>
+                }
+                <dd style="display:none;"><input name="datetimepicker" type="text"/></dd>
+                <dd style="display:none;"><p style="width:15px" id="addDate">[+]</p></dd>
+
+                <dt>@Html.LabelFor(model => model.nickName)：
+                    @Html.TextBoxFor(model => model.nickName, new { @id = "color", style = "background-color:#c1c1eb;" })</dt>
+
+                <dt>@Html.LabelFor(model => model.color)：
+                <div id="colorSelector"><div style="background-color: #c1c1eb"></div></div></dt>
+            </div>
+        </dl>
+    </fieldset>
+
+    <input type="submit" value="送出" />
+</form>
+<script type="text/javascript">
+    (function (window) {
+        var document = window.document,
+        $ = window.jQuery
+        $("[name=datetimepicker]").datetimepicker({
+            dayOfWeekStart: 7,
+            startDate: '2016/12/21'
+        })
+        $('#addDate').click(function () {
+            $("<dd><input name='datetimepicker' type='text' /></dd>").insertBefore(this)
+            $("[name=datetimepicker]").datetimepicker({
+                dayOfWeekStart: 7,
+                startDate: '2016/12/21'
+            })
+        })
+        //取值 $('.valid')[0].value $('.valid')[1].value
+        $('#colorSelector').ColorPicker({
+            color: '#c1c1eb',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500)
+                return false
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500)
+                return false
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#colorSelector div').css('backgroundColor', '#' + hex)
+                $('#color').css('background-color', '#' + hex)
+            }
+        })
+        $('#invited_true').click(function () {
+            if (this.checked == true) {
+                $('#invited_true')[0].checked = true;
+                $('#invited_false')[0].checked = false;
+                $('#chooseHiden')[0].style = "";
+            }
+        })
+        $('#invited_false').click(function () {
+            if (this.checked == true) {
+                $('#invited_true')[0].checked = false;
+                $('#invited_false')[0].checked = true;
+                $('#chooseHiden')[0].style = "display:none;";
+            }
+        })
+    })(window)
+</script>

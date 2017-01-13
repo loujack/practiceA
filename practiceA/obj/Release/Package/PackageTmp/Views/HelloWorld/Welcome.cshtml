@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Welcome";
+    var i = 1;
+}
+@Styles.Render("~/Content/jack.css")
+<h2>LogList</h2>
+<input type="button" value="reCycle" name="reCycle" />
+
+<table class="abgne_tab" border="2px">
+    <tr>
+        <td width="80px;">Button</td>
+        <td width="80px;">Number</td>
+        <td width="200px;">Date</td>
+        <td width="200px;">Machine</td>
+        <td width="200px;">Service</td>
+        <td>Mesaage</td>
+    </tr>
+        @foreach (var temp in ViewBag.Log)
+        {
+            <tr style="@Html.Raw(ViewBag.changeBackgroundColor(i, ViewBag.LogMsgTag[Convert.ToInt32(temp.LogGroup)], null))">
+                <td><button>@Html.ActionLink("detail","detail", new { group = temp.LogGroup }, null)</button></td>
+                <td>@i</td>
+                <td>@temp.Date</td>
+                <td>@temp.Machine</td>
+                <td>@temp.Service</td>
+                <td>@temp.Msg</td>
+            </tr>
+            i++;
+        }
+</table>
+

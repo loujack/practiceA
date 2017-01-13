@@ -1,0 +1,6 @@
+D:\Projects\practiceA\GetLogDLL\bin\Debug\GetLogDLL.dll.config
+D:\Projects\practiceA\GetLogDLL\bin\Debug\GetLogDLL.dll
+D:\Projects\practiceA\GetLogDLL\bin\Debug\GetLogDLL.pdb
+D:\Projects\practiceA\GetLogDLL\obj\Debug\GetLogDLL.csprojResolveAssemblyReference.cache
+D:\Projects\practiceA\GetLogDLL\obj\Debug\GetLogDLL.dll
+D:\Projects\practiceA\GetLogDLL\obj\Debug\GetLogDLL.pdb

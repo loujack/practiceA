@@ -1,0 +1,9 @@
+<publishData>
+  <publishTarget publishUrl="C:\inetpub\wwwroot\XLogWCF\">
+    <file relUrl="bin/GetLogWCF.dll" publishTime="12/19/2016 10:15:04" />
+    <file relUrl="bin/GetLogWCF.dll.config" publishTime="12/19/2016 09:35:12" />
+    <file relUrl="bin/GetLogWCF.pdb" publishTime="12/19/2016 10:15:04" />
+    <file relUrl="GetLogWCF.Service1.svc" publishTime="12/19/2016 10:15:05" />
+    <file relUrl="Web.config" publishTime="12/19/2016 09:35:12" />
+  </publishTarget>
+</publishData>

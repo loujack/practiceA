@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="XDemoId" Class="XLogDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=211.21.33.211,110;Initial Catalog=XDemoId;User ID=XDemoIdUser" SettingsObjectName="GetLogWCF.Properties.Settings" SettingsPropertyName="XDemoIdConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.RecordLog" Member="RecordLog">
+    <Type Name="RecordLog">
+      <Column Name="rlId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="rlDeviceId" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="rlDeviceType" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="rlProject" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="rlService" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="rlApi" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="rlStep" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="rlMsgTag" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="rlMsg" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="rlElement" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="rlMachine" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="rlDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="rlSolution" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="rlIsShow" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

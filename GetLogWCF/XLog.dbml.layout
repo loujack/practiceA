@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="XLog">
+  <DataContextMoniker Name="/XLogDataContext" />
+  <nestedChildShapes>
+    <classShape Id="64820787-8653-4e85-8464-d8229ecf7db4" absoluteBounds="3.75, 1.125, 2, 3.3852461751302081">
+      <DataClassMoniker Name="/XLogDataContext/RecordLog" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1a495415-aedb-41f9-8bc1-7881cabc829a" absoluteBounds="3.765, 1.585, 1.9700000000000002, 2.825246175130208" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

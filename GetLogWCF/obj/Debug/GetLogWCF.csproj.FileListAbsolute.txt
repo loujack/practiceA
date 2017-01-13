@@ -1,0 +1,6 @@
+D:\Projects\practiceA\GetLogWCF\bin\Debug\GetLogWCF.dll.config
+D:\Projects\practiceA\GetLogWCF\bin\Debug\GetLogWCF.dll
+D:\Projects\practiceA\GetLogWCF\bin\Debug\GetLogWCF.pdb
+D:\Projects\practiceA\GetLogWCF\obj\Debug\GetLogWCF.dll
+D:\Projects\practiceA\GetLogWCF\obj\Debug\GetLogWCF.pdb
+D:\Projects\practiceA\GetLogWCF\obj\Debug\GetLogWCF.csprojResolveAssemblyReference.cache
